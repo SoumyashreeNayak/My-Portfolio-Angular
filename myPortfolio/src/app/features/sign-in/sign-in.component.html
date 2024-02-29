@@ -1,0 +1,30 @@
+<div class="container">
+      <form #userForm="ngForm"(ngSubmit)="submit(userForm)">
+            <div class="form-group">
+                  <label for="username">Username:
+                        <input type="text" name="username" class="form-control" ngModel placeholder="Username"
+                        maxlength="10" minlength="5" required #username="ngModel">
+                        <div *ngIf="username.touched && username.invalid" class="alert alert-warning" role="alert">
+                              <p *ngIf='username.errors?.["required"]'>Username is required.</p>
+                              <p *ngIf='username.errors?.["maxlength"]'>Username Should Be  Less Than Ten Characters.</p>
+                              <p *ngIf='username.errors?.["minlength"]'>Username Should Be Geater Then Five Characters.</p>
+                        </div>
+                  </label>
+            </div>
+            <div class="form-group">
+                  <label for="Password">Password:
+                        <input type="password" name="password" class="form-control" ngmodel placeholder="Password"
+                        required maxLength="20" minlength="5" ngModel  #password="ngModel">
+                        <div *ngIf="password.touched && password.invalid" class="alert alert-warning">
+                              <p *ngIf="password.errors?.['required']">Password field is required</p>
+                              <p *ngIf="password.errors?.['minlength']">Your Password Must Have Above 5 Letters</p>
+                        </div>
+                  </label>
+            </div><br>
+            <div class="form-group">
+                  <button class="btn btn-primary" [disabled] = "userForm.invalid">Submit</button>
+            </div>
+      </form><br>
+      <a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Account Register</a>
+</div>
+
